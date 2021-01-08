@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>編集|{{ task.title }}|ToDo-App</title>
+{% endblock %}
+
+{% block body %}
+<div>
+    <ul>
+        <li><a href="{{url_for('index')}}">一覧へ</a></li>
+    </ul>
+</div>
+<div>
+    <h3>編集</h3>
+    <form action="" method="post">
+        <section>
+            <h5><label for="title">タイトル</label></h5>
+            <input type="text" name="title" id="title" value="{{ task.title }}">
+        </section>
+        <section>
+            <h5><label for="text">詳細</label></h5>
+            <textarea name="text" id="" cols="30" rows="10" id="text">{{ task.text }}</textarea>
+        </section>
+        <section>
+            <h5><label for="status">状態</label></h5>
+            <select name="status" id="status">
+                {% if task.status == 0 %}
+                <option value="0" selected>未実行</option>
+                {% else %}
+                <option value="0">未実行</option>
+                {% endif %}
+                {% if task.status == 1 %}
+                <option value="1" selected>実行中</option>
+                {% else %}
+                <option value="1">実行中</option>
+                {% endif %}
+                {% if task.status == 2 %}
+                <option value="2" selected>完了</option>
+                {% else %}
+                <option value="2">完了</option>
+                {% endif %}           
+            </select>
+        </section>
+        <input type="submit" value="作成">
+    </form>
+</div>
+{% endblock %}

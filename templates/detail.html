@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ task.title }}|ToDo-App</title>
+{% endblock %}
+
+{% block body %}
+<div>
+    <ul>
+        <li><a href="{{url_for('index')}}">一覧へ</a></li>
+        <li><a href="{{url_for('edit', id=task.id)}}">編集する</a></li>
+        <li><a href="{{url_for('delete', id=task.id)}}">削除</a></li>
+    </ul>
+</div>
+<div>
+    <section>
+        <h3>{{ task.title }}</h3>
+    </section>
+    <section>
+        <h5><label for="text">詳細</label></h5>
+        <p id="text">{{ task.text |replace("\n", '<br>') |safe }}</p>
+    </section>
+    <section>
+        <h5><label for="status">状態</label></h5>
+        {% if task.status == 1 %}
+        <p id="status">実行中</p>        
+        {% elif task.status == 2 %}
+        <p id="status">完了</p>
+        {% else %}
+        <p id="status">未実行</p>
+        {% endif %}
+    </section>
+    <section>
+        <h5><label for="updated">更新日時</label></h5>
+        <p id="updated">{{ task.updated }}</p>
+    </section>
+</div>
+{% endblock %}
